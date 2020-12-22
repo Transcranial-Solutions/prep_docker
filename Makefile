@@ -164,6 +164,11 @@ build_python_arm64: make_build_args
 		$(shell cat BUILD_ARGS) \
 		-t $(REPO_HUB)/$(NAME):$(TAGNAME) .
 
+build_python_pi32: make_build_args
+		docker build --no-cache --rm=true -f python_37/Dockerfile.pi32 \
+		$(shell cat BUILD_ARGS) \
+		-t $(REPO_HUB)/$(NAME):$(TAGNAME) .
+
 build_python_base: make_build_args
 		docker build --no-cache --rm=true -f python_37_base/Dockerfile \
 		$(shell cat BUILD_ARGS) \
