@@ -100,15 +100,16 @@ RUN ln -s /usr/local/bin/python3.7 /usr/local/bin/python3.6 ; \
         fi;\
     done && \
     if [ "x$RC_BUILD" != "x" ];then \
-        wget https://dl.google.com/go/go${GO_VERSION}.linux-arm64.tar.gz ; \
-        tar zxf go${GO_VERSION}.linux-arm64.tar.gz ; \
+        wget https://dl.google.com/go/go${GO_VERSION}.linux-armv6l.tar.gz ; \
+        tar zxf go${GO_VERSION}.linux-armv6l.tar.gz ; \
         rm go${GO_VERSION}.linux-arm64.tar.gz ; \
         mv go /usr/local/ ; \
-        git clone https://github.com/Transcranial-Solutions/prep_docker.git ; \
+        export PATH=$PATH:/usr/local/go/bin \
+        git clone https://github.com/Transcranial-Solutions/rewardcalculator.git ; \
         cd rewardcalculator ; \
         # git checkout ${ICON_RC_VERSION} ; \
-        make linux ; \
-        make install pi_32 DST_DIR=/usr/local/bin ; \
+        make pi_32 ; \
+        make install DST_DIR=/usr/local/bin ; \
         cd .. && rm -rf rewardcalculator /usr/local/go ; \
     fi ; \
     pip3 install msgpack==0.6.2 ;\

@@ -1,9 +1,8 @@
 version: "3"
 services:
    prep:
-      image: iconloop/prep-node:2008032356xc7087e
+      image: iconloop/prep-node:2008271251x7da45b
       container_name: "prep-mainnet"
-      network_mode: host
       restart: "on-failure"
 #      entrypoint: bash -c "while [ 1 ]; do sleep 1; done"
       environment:
@@ -11,12 +10,12 @@ services:
          CERT_PATH: "/cert"
          LOOPCHAIN_LOG_LEVEL: "DEBUG"
          ICON_LOG_LEVEL: "DEBUG"
-         PRIVATE_KEY_FILENAME: "YOUR_KEYSTORE_or_YOUR_CERTKEY_FILENAME" # only filename
-         PRIVATE_PASSWORD: "YOUR_KEY_PASSWORD"
+         PRIVATE_KEY_FILENAME: "keystore.json" # only filename
+         PRIVATE_PASSWORD: "k3ystor3!"
       cap_add:
          - SYS_TIME
       volumes:
-         - ./data:/data # mount a data volumes
+         - /mnt/data:/data # mount a data volumes
          - ./cert:/cert # Automatically generate cert key files here
       ports:
          - 9000:9000
